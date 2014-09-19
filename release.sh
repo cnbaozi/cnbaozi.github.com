@@ -1,5 +1,5 @@
 #!/bin/bash
-git add _post/*.md
+git add _posts/*.md
 jekyll build
 git commit -a -m 'release'
 git push
