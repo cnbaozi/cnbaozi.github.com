@@ -1,4 +1,4 @@
 #!/bin/bash
-jeklly build
+jekyll build
 git commit -a -m 'release'
 git push
