@@ -28,117 +28,139 @@
 <style>
 /*
   @名称: index
-	@功能: 首页样式
+    @功能: 首页样式
 */
 h2 {
-  font-size:18px;
-  font-weight:bold;
-  color:black;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
 }
+
 #article,
 #project,
 #aboutme {
-  margin:30px auto 0;
+    margin: 30px auto 0;
 }
+
 #article ul,
 #project ul,
 #aboutme p {
-  margin:0 2em;
+    margin: 0 2em;
 }
+
 #article time {
-  color:#999;
+    color: #999;
 }
+
 #article ul {
-  line-height:1.8;
+    line-height: 1.8;
 }
+
 #project li {
-  margin:8px 8px 0 0;
+    margin: 8px 8px 0 0;
 }
+
 #project a {
-  padding:2px;
+    padding: 2px;
 }
 
 #project img {
-  display:block;
-  width:100px;
-  height:100px;
+    display: block;
+    width: 100px;
+    height: 100px;
 }
+
 #aboutme {
-  line-height:2.2;
+    line-height: 2.2;
 }
+
 #aboutme span {
-  font-weight:bold;
-  margin-right:10px;
+    font-weight: bold;
+    margin-right: 10px;
 }
+
 #aboutme a {
-  margin-right:15px;
+    margin-right: 15px;
 }
 </style>
 
 <section id="article">
-  <h2>Article</h2>
-  <ul>
-    
-      <li><time datetime="2014-09-19">19 Sep 2014</time> &raquo; <a href="/2014/09/19/Programmer-manual.html">Programmer Manual</a></li>
-    
-      <li><time datetime="2014-09-12">12 Sep 2014</time> &raquo; <a href="/2014/09/12/Hello-Word.html">Hello Word</a></li>
-    
-  </ul>
+    <h2>Article</h2>
+    <ul>
+        
+        <li>
+            <time datetime="2014-09-19">19 Sep 2014</time> &raquo; <a href="/2014/09/19/Programmer-manual.html">Programmer Manual</a>
+        </li>
+        
+        <li>
+            <time datetime="2014-09-12">12 Sep 2014</time> &raquo; <a href="/2014/09/12/Hello-Word.html">Hello Word</a>
+        </li>
+        
+    </ul>
 </section>
 
 <section id="project">
-  <h2>Project</h2>
-  <ul class="fn-clear">
-    <li class="">
-      <a href="http://www.baozy.com/myright" title="">我的右键 (Chrome扩展)</a>
-    </li>
-  </ul>
+    <h2>Project</h2>
+    <ul class="fn-clear">
+        <li class="">
+            <a href="https://github.com/iBaozi/bz-fw" title="">Bz-Fw</a>
+        </li>
+        <li class="">
+            <a href="https://github.com/iBaozi/bz-cache" title="">Bz-Cache</a>
+        </li>
+        <li class="">
+            <a href="https://gist.github.com/iBaozi/83157cdff3d3e28f32f3" title="">gen_sn.py(生成序列号)</a>
+        </li>
+        <li class="">
+            <a href="http://www.baozy.com/myright" title="">我的右键 (Chrome扩展)</a>
+        </li>
+    </ul>
 </section>
 
 <section id="aboutme">
-  <h2>About me</h2>
-  <p>PHP程序员 @Xiamen</p>
-  <p>
-      <span>足迹:</span>
-      <a href="http://weibo.com/58days">包子_Amoy</a>
-  </p>
-  <p><span>E-mail:</span>fjbaozi#gmail.com</p>
-  <p><span>博客:</span> <a href="http://www.baozy.com/">www.BaozY.com</a></p>	
+    <h2>About me</h2>
+    <p>PHP Programmer@Xiamen</p>
+    <p>
+        <span>Weibo:</span>
+        <a href="http://weibo.com/58days">包子_Amoy</a>
+    </p>
+    <p><span>E-mail:</span>fjbaozi#gmail.com</p>
+    <p><span>Blog:</span> <a href="http://www.baozy.com/">www.BaozY.com</a></p>
 </section>
 
 <script>
-function moveSection(hash) {
-  var body, elem, value;
+    function moveSection(hash) {
+        var body, elem, value;
 
-  if (!hash) return;
+        if (!hash) return;
 
-  hash = hash.match(/#[^#]*/g);
+        hash = hash.match(/#[^#]*/g);
 
-  for (var i = 0, len = hash.length; i < len; i++) {
-    value = hash[i];
+        for (var i = 0, len = hash.length; i < len; i++) {
+            value = hash[i];
 
-    if (value.indexOf('#anchor-') > -1) {
-      elem = document.getElementById(value.replace(/#anchor-/, ''));
-      break;
+            if (value.indexOf('#anchor-') > -1) {
+                elem = document.getElementById(value.replace(/#anchor-/, ''));
+                break;
+            }
+        }
+
+        body = document.getElementById('main');
+        body.insertBefore(elem, body.firstElementChild || body.firstChild);
     }
-  }
 
-  body = document.getElementById('main');
-  body.insertBefore(elem, body.firstElementChild || body.firstChild);
-}
+    moveSection(location.hash);
 
-moveSection(location.hash);
+    if (location.pathname === '/') {
+        document.getElementById('link-article').onclick = goTo;
+        document.getElementById('link-project').onclick = goTo;
+        document.getElementById('link-aboutme').onclick = goTo;
+    }
 
-if (location.pathname === '/') {
-  document.getElementById('link-article').onclick = goTo;
-  document.getElementById('link-project').onclick = goTo;
-  document.getElementById('link-aboutme').onclick = goTo;
-}
-
-function goTo(e) {
-  moveSection(this.href);
-  return false;
-}
+    function goTo(e) {
+        moveSection(this.href);
+        return false;
+    }
 </script>
 
 </div>
